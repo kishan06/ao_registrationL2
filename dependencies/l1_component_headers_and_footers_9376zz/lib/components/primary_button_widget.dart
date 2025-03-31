@@ -53,7 +53,7 @@ class _PrimaryButtonWidgetState extends State<PrimaryButtonWidget> {
         onPressed: !widget!.isEnabled
             ? null
             : () {
-                print('primary_buttonMain pressed ...');
+                widget.onTapCallBack?.call();
               },
         text: widget!.buttonText!,
         options: FFButtonOptions(

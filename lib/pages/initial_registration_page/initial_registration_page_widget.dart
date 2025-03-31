@@ -1,3 +1,8 @@
+import 'package:l2_a_o_registration/l2_components/create_password_component/create_password_component_widget.dart';
+import 'package:l2_a_o_registration/l2_components/o_t_p_authentication_component/o_t_p_authentication_component_widget.dart';
+import 'package:l2_a_o_registration/l2_components/registration_successfull_component/registration_successfull_component_widget.dart';
+import 'package:l2_a_o_registration/l2_components/review_details_component/review_details_component_widget.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/l2_components/l2_initial_registration_process_page/l2_initial_registration_process_page_widget.dart';
@@ -36,19 +41,60 @@ class InitialRegistrationPageWidget extends StatefulWidget {
 class _InitialRegistrationPageWidgetState
     extends State<InitialRegistrationPageWidget> {
   late InitialRegistrationPageModel _model;
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  // Index to track the current component
+  int _currentComponentIndex = 0;
+
+  // List of widgets to switch between
+  late List<Widget> _components;
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => InitialRegistrationPageModel());
+
+    // Initialize the components list with callbacks
+    _components = [
+      L2InitialRegistrationProcessPageWidget(
+        onConfirmCallBack: () async {
+          _switchToNextComponent();
+        },
+      ),
+      OTPAuthenticationComponentWidget(
+        onConfirmCallbck: () async {
+          _switchToNextComponent();
+        },
+      ),
+      ReviewDetailsComponentWidget(
+        onConfirmCallBack: () async {
+          _switchToNextComponent();
+        },
+      ),
+      CreatePasswordComponentWidget(
+        onConfirmCallBack: () async {
+          _switchToNextComponent();
+        },
+      ),
+      const RegistrationSuccessfullComponentWidget(
+          // onConfirmCallBack: () async {
+          //   _switchToNextComponent();
+          // },
+          ),
+      // Add more components as needed
+    ];
+  }
+
+  void _switchToNextComponent() {
+    setState(() {
+      _currentComponentIndex =
+          (_currentComponentIndex + 1) % _components.length;
+    });
   }
 
   @override
   void dispose() {
     _model.dispose();
-
     super.dispose();
   }
 
@@ -120,16 +166,16 @@ class _InitialRegistrationPageWidgetState
                         updateCallback: () => safeSetState(() {}),
                         child: l1_component_headers_and_footers_9376zz
                             .StepperWidget(
-                          step1IsStepComplete: false,
-                          step1IsCurrentStep: true,
-                          step2IsStepComplete: false,
-                          step2IsCurrentStep: false,
-                          step3IsStepComplete: false,
-                          step3IsCurrentStep: false,
-                          step4IsStepComplete: false,
-                          step4IsCurrentStep: false,
-                          step5IsStepComplete: false,
-                          step5IsCurrentStep: false,
+                          step1IsStepComplete: _currentComponentIndex > 0,
+                          step1IsCurrentStep: _currentComponentIndex == 0,
+                          step2IsStepComplete: _currentComponentIndex > 1,
+                          step2IsCurrentStep: _currentComponentIndex == 1,
+                          step3IsStepComplete: _currentComponentIndex > 2,
+                          step3IsCurrentStep: _currentComponentIndex == 2,
+                          step4IsStepComplete: _currentComponentIndex > 3,
+                          step4IsCurrentStep: _currentComponentIndex == 3,
+                          step5IsStepComplete: _currentComponentIndex > 4,
+                          step5IsCurrentStep: _currentComponentIndex == 4,
                         ),
                       ),
                     ),
@@ -150,14 +196,15 @@ class _InitialRegistrationPageWidgetState
                             children: [
                               Container(
                                 width: 200.0,
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child:
                                     l1_component_headers_and_footers_9376zz_util
                                         .wrapWithModel(
                                   model: _model.currentPathModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: l1_component_headers_and_footers_9376zz
-                                      .CurrentPathWidget(
+                                  child:
+                                      const l1_component_headers_and_footers_9376zz
+                                          .CurrentPathWidget(
                                     keyPrefix: 'breadcrumbs',
                                   ),
                                 ),
@@ -165,9 +212,12 @@ class _InitialRegistrationPageWidgetState
                             ],
                           ),
                           Container(
-                            width: MediaQuery.sizeOf(context).width * 0.35,
+                            width: _currentComponentIndex == 2 ||
+                                    _currentComponentIndex == 4
+                                ? MediaQuery.sizeOf(context).width * 1
+                                : MediaQuery.sizeOf(context).width * 0.35,
                             height: MediaQuery.sizeOf(context).height * 0.8,
-                            decoration: BoxDecoration(),
+                            decoration: const BoxDecoration(),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -178,16 +228,13 @@ class _InitialRegistrationPageWidgetState
                                     model: _model
                                         .l2InitialRegistrationProcessPageModel,
                                     updateCallback: () => safeSetState(() {}),
-                                    child:
-                                        L2InitialRegistrationProcessPageWidget(
-                                      onConfirmCallBack: () async {},
-                                    ),
+                                    child: _components[_currentComponentIndex],
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        ].divide(SizedBox(height: 35.0)),
+                        ].divide(const SizedBox(height: 35.0)),
                       ),
                     ),
                   ],

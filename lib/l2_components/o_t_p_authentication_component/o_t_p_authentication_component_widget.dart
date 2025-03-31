@@ -139,7 +139,9 @@ class _OTPAuthenticationComponentWidgetState
                       false,
                     ),
                 buttonText: 'Confirm',
-                onTapCallBack: () async {},
+                onTapCallBack: () async {
+                  widget.onConfirmCallbck?.call();
+                },
               ),
             ),
           ],

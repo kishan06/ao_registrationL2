@@ -36,27 +36,22 @@ class AppStateNotifier extends ChangeNotifier {
 }
 
 GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
-      initialLocation: '/',
+      initialLocation: RegistrationWidget.routePath,
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => RegistrationWidget(),
+      // errorBuilder: (context, state) => const RegistrationWidget(),
       routes: [
         FFRoute(
-          name: '_initialize',
-          path: '/',
-          builder: (context, _) => RegistrationWidget(),
+          name: RegistrationWidget.routeName,
+          path: RegistrationWidget.routePath,
+          builder: (context, params) => const RegistrationWidget(),
         ),
         FFRoute(
           name: InitialRegistrationPageWidget.routeName,
           path: InitialRegistrationPageWidget.routePath,
-          builder: (context, params) => InitialRegistrationPageWidget(),
+          builder: (context, params) => const InitialRegistrationPageWidget(),
         ),
-        FFRoute(
-          name: RegistrationWidget.routeName,
-          path: RegistrationWidget.routePath,
-          builder: (context, params) => RegistrationWidget(),
-        )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
 
@@ -219,7 +214,8 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() =>
+      const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {
