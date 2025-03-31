@@ -67,7 +67,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: Image.asset(
-                  'packages/dependencies/l1_component_headers_and_footers_9376zz/assets/images/Logo_of_Income_Tax_Department_India.png',
+                  'packages/l1_component_headers_and_footers_9376zz/assets/images/Logo_of_Income_Tax_Department_India.png',
                   width: 80.0,
                   height: 120.0,
                   fit: BoxFit.contain,
@@ -183,7 +183,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
-                    'dependencies/l1_component_headers_and_footers_9376zz/assets/images/infosys-logo-infosys-icon-free-free-vector.jpg',
+                    'packages/l1_component_headers_and_footers_9376zz/assets/images/infosys-logo-infosys-icon-free-free-vector.jpg',
                     width: 200.0,
                     height: 200.0,
                     fit: BoxFit.cover,

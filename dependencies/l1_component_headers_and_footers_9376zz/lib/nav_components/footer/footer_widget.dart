@@ -67,7 +67,7 @@ class _FooterWidgetState extends State<FooterWidget> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
-                          'dependencies/l1_component_headers_and_footers_9376zz/assets/images/npi.png',
+                          'packages/l1_component_headers_and_footers_9376zz/assets/images/npi.png',
                           width: 200.0,
                           height: 200.0,
                           fit: BoxFit.contain,
@@ -78,7 +78,7 @@ class _FooterWidgetState extends State<FooterWidget> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.asset(
-                      'dependencies/l1_component_headers_and_footers_9376zz/assets/images/7fbgi_3.jpg',
+                      'packages/l1_component_headers_and_footers_9376zz/assets/images/7fbgi_3.jpg',
                       width: 80.0,
                       height: 100.0,
                       fit: BoxFit.cover,
