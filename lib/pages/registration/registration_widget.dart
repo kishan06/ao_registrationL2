@@ -33,6 +33,9 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => RegistrationModel());
+    Future.delayed(const Duration(seconds: 2), () {
+      context.pushNamed(InitialRegistrationPageWidget.routeName);
+    });
   }
 
   @override
